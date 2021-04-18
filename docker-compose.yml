@@ -1,0 +1,28 @@
+version: '3'
+services:
+    firstapp:
+        image: firstapp
+        build: 
+          context: ./firstapp/
+        ports:
+            - 3000:3000
+        networks: 
+            - mynetwork
+    secondapp:
+        image: secondapp
+        build: 
+          context: ./secondapp/
+        ports:
+            - 4000:4000
+        networks: 
+            - mynetwork
+    loadbalancer:
+        image: loadbalancer
+        build: 
+          context: ./nginx/
+        ports:
+            - 5000:5000
+        networks: 
+            - mynetwork
+networks: 
+    mynetwork:
